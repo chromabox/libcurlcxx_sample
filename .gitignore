@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+.vscode/settings.json
+debug/
+release/
+build/
+build_relaese/
+browse.out*
+BROWSE.OUT*
+
