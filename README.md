@@ -3,7 +3,7 @@
 これは[libcurlcxx](https://github.com/chromabox/libcurlcxx)を外部プロジェクトから使うときのサンプルです。  
 CMakeを使った場合の方法になります
 
-## ビルド方法:
+## このサンプルのビルド方法:
 
 まず、このプロジェクトをcloneします。
 ```bash
@@ -40,5 +40,34 @@ $ ./build.sh
 でサンプルがビルドできます。
 `build/sample`が引数付きGETリクエストを送るサンプルとなります。  
 
+## すでにあるプロジェクトからのlibcurlcxx取り込み方法:
 
+gitの`submodule`を使う方法が楽です。
+例では、`external_libs`ディレクトリに外部ライブラリのコードが入るとします。
+
+まず、以下のようにプロジェクトの`CMakeLists.txt`に追記・変更します。
+例ではプロジェクト名を `sample` とします。  
+```
+add_subdirectory(external_libs/libcurlcxx)
+.....
+target_include_directories(sample PUBLIC ${LIBCURLCXX_INC_DIRS})
+.....
+target_link_libraries(sample PRIVATE curlcxx )
+
+```
+その後、以下コマンドで取り込みます
+```
+$ cd external_libs
+$ git submodule add https://github.com/chromabox/libcurlcxx.git
+$ cd libcurlcxx/
+$ git checkout v0.1.0
+$ cd ..
+$ git submodule update --init --recursive
+$ git commit -a -m "libcurlcxxを適用"
+```
+特に、`git submodule update --init --recursive`は必ず行ってください。  
+内部でcurlをsubmoduleとしているためです。  
+例では`v0.1.0`を取り込んでいますが、必要に応じて適時変更してください。
+
+あとはいつものように`cmake`でビルドを行ってください。
 
