@@ -1,0 +1,3 @@
+[submodule "external_libs/libcurlcxx"]
+	path = external_libs/libcurlcxx
+	url = https://github.com/chromabox/libcurlcxx.git
