@@ -1,0 +1,2 @@
+# libcurlcxx_sample
+libcurlcxxを外部プロジェクトで使う場合のサンプルです
