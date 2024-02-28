@@ -67,7 +67,19 @@ $ git commit -a -m "libcurlcxxを適用"
 ```
 特に、`git submodule update --init --recursive`は必ず行ってください。  
 内部でcurlをsubmoduleとしているためです。  
-例では`v0.1.0`を取り込んでいますが、必要に応じて適時変更してください。
+例では`v0.1.1`を取り込んでいますが、必要に応じて適時変更してください。
 
 あとはいつものように`cmake`でビルドを行ってください。
+
+## libcurlcxxのアップデート方法:
+
+libcurlcxxのバージョンアップに追従する場合は以下のようにします。
+```
+$ git submodule foreach git fetch
+$ cd external_libs/libcurlcxx
+$ git reset --hard origin/master
+$ cd ..
+$ git commit -a -m "libcurlcxxを最新に"
+```
+`origin/master`にすると現状の最新版が反映されます。この部分は適時変更してください。  
 
