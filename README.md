@@ -18,7 +18,7 @@ $ git submodule update --init --recursive
 gcc は c++20が通るバージョンが必要になります。  
 (c++17でも通るとは思いますがCMakeの設定で20にしているので、c++17でどうしても…な方は`CMakeLists.txt`を適時変更してください)  
   
-ubuntu 22.04の場合は次のようになります。(OpenSSL版。こちらを推奨)  
+ubuntu 22.04, 24.04 の場合は次のようになります。(OpenSSL版。こちらを推奨)  
 ```bash
 $ sudo apt install build-essential cmake cpplint libssl-dev 
 ```
@@ -60,26 +60,29 @@ target_link_libraries(sample PRIVATE curlcxx )
 $ cd external_libs
 $ git submodule add https://github.com/chromabox/libcurlcxx.git
 $ cd libcurlcxx/
-$ git checkout v0.1.0
+$ git checkout v0.2.0
 $ cd ..
 $ git submodule update --init --recursive
 $ git commit -a -m "libcurlcxxを適用"
 ```
 特に、`git submodule update --init --recursive`は必ず行ってください。  
 内部でcurlをsubmoduleとしているためです。  
-例では`v0.1.1`を取り込んでいますが、必要に応じて適時変更してください。
+例では`v0.2.0`を取り込んでいますが、必要に応じて適時変更してください。
 
 あとはいつものように`cmake`でビルドを行ってください。
 
 ## libcurlcxxのアップデート方法:
 
 libcurlcxxのバージョンアップに追従する場合は以下のようにします。
+(vx.x.xにしたいとき)
 ```
+$ git submodule update
 $ git submodule foreach git fetch
 $ cd external_libs/libcurlcxx
-$ git reset --hard origin/master
+$ git checkout vx.x.x
+$ git submodule update
 $ cd ..
-$ git commit -a -m "libcurlcxxを最新に"
+$ git commit -a -m "libcurlcxxをvx.x.xに更新"
 ```
 `origin/master`にすると現状の最新版が反映されます。この部分は適時変更してください。  
 

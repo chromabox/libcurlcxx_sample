@@ -11,12 +11,12 @@
             ],
             "includePath": [
                 "./include",
-                "./external_libs/libcurlcppxx/include/base",
-                "./external_libs/libcurlcppxx/include/http",
-                "./external_libs/libcurlcppxx/include/ext"
+                "./external_libs/libcurlcxx/extlibs/curl/include",
+                "./external_libs/libcurlcxx/include/base",
+                "./external_libs/libcurlcxx/include/ext"
             ],
             "cppStandard": "${default}",
-            "intelliSenseMode":"linux-clang-x64",
+            "intelliSenseMode":"linux-gcc-x64",
             "browse": {
                 "databaseFilename": "${workspaceFolder}/.vscode/browse.out",
                 "limitSymbolsToIncludedHeaders": false,
