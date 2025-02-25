@@ -20,15 +20,15 @@ gcc は c++20が通るバージョンが必要になります。
   
 ubuntu 22.04, 24.04 の場合は次のようになります。(OpenSSL版。こちらを推奨)  
 ```bash
-$ sudo apt install build-essential cmake cpplint libssl-dev 
+$ sudo apt install build-essential cmake cpplint libssl-dev libpsl-dev
 ```
 か、もしくは(gnuTLS版)
 ```bash
-$ sudo apt install build-essential cmake cpplint libgnutls28-dev
+$ sudo apt install build-essential cmake cpplint libgnutls28-dev libpsl-dev
 ```
 か、あるいは(NSS版)
 ```bash
-$ sudo apt install build-essential cmake cpplint libnss3-dev 
+$ sudo apt install build-essential cmake cpplint libnss3-dev libpsl-dev
 ```
 を実行してsslの開発用ライブラリを入れて下さい。  
 (sslライブラリ系が3つに別れているのはcurl内で使用しているSSL用ライブラリが色々選択可能なためで、基本的に提供される機能に差は無いので好きなのを入れてください…と言いたいところですが、openssl版でしか確認してないのでできればlibssl-devにしてください)  
@@ -60,14 +60,14 @@ target_link_libraries(sample PRIVATE curlcxx )
 $ cd external_libs
 $ git submodule add https://github.com/chromabox/libcurlcxx.git
 $ cd libcurlcxx/
-$ git checkout v0.2.0
+$ git checkout v0.3.0
 $ cd ..
 $ git submodule update --init --recursive
 $ git commit -a -m "libcurlcxxを適用"
 ```
 特に、`git submodule update --init --recursive`は必ず行ってください。  
 内部でcurlをsubmoduleとしているためです。  
-例では`v0.2.0`を取り込んでいますが、必要に応じて適時変更してください。
+例では`v0.3.0`を取り込んでいますが、必要に応じて適時変更してください。
 
 あとはいつものように`cmake`でビルドを行ってください。
 
